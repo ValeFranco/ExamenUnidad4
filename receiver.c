@@ -27,11 +27,12 @@ void* enviar(void *arg)
             break;
         }
 
-        if( strncmp(str, "EnviarMensaje", strlen("EnviarMensaje")) == 0){  //lee txt y lo envia
+         if( strncmp(str, "EnviarMensajeNormal", strlen("EnviarMensajeNormal")) == 0){  //lee txt y lo envia
             //falta agregar si leer arriba hacia abajo o alrevez
             FILE *fPointer;
             fPointer = fopen("MiMensaje.txt", "r");
             char singleLine[200];
+
             while (!feof(fPointer))
             {
                 fgets(singleLine, 200, fPointer);
@@ -39,6 +40,32 @@ void* enviar(void *arg)
 
             }
             fclose(fPointer);
+        }
+        else if(strncmp(str, "EnviarMensajeInvertido", strlen("EnviarMensajeInvertido")) == 0)
+        {
+            FILE *fPointer;
+            fPointer = fopen("MiMensaje.txt", "r");
+
+            char singleLine[200];
+
+            char multipleLines[200][200];
+
+            int counter = 0;
+            int tot = 0;
+
+             while (fgets(multipleLines[counter], 200, fPointer))
+            {
+                multipleLines[counter][strlen(multipleLines[counter])-1]= '\n';
+                counter++;
+            }
+            tot = counter;
+
+            for (size_t i = 0; i < counter; i++)
+            {
+                mq_send(mq2, multipleLines[counter], strlen(str) + 1, 0);
+            }
+            
+
         }
 
     }
