@@ -73,9 +73,10 @@ int main(int argc, char *argv[])
                 multipleLines[counter][strlen(multipleLines[counter])-1]= '\n';
                 counter++;
             }
+            
             tot = counter;
 
-            for (size_t i = 0; i < counter; i++)
+            for (counter = 0; counter < tot; ++counter)
             {
                 mq_send(mq, multipleLines[counter], strlen(str) + 1, 0);
             }
