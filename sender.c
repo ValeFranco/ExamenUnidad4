@@ -3,11 +3,34 @@
 #include <unistd.h>
 #include <string.h>
 #include <mqueue.h>
+#include <pthread.h>
 
+void* recibir(void *arg)
+{
+   mqd_t mq2 = mq_open("/mq2",O_RDONLY);
+
+    char buff[64];
+
+    while (1)
+    {
+        mq_receive(mq2, buff, 64, NULL);
+        printf("Message received: %s\n", buff);
+        if (strncmp(buff, "exit", strlen("exit")) == 0) {
+            break;
+        }
+
+    }
+    mq_close(mq2);
+    mq_unlink("/mq2");
+    exit(EXIT_SUCCESS);
+}
 int main(int argc, char *argv[])
 {
     mqd_t mq = mq_open("/mq0", O_WRONLY);
-    char str[64];
+    char str[32];
+
+    pthread_t threadID2;
+    pthread_create(&threadID2,NULL,&recibir,NULL);
 
     while (1)
     {
