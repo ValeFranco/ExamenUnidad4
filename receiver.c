@@ -48,7 +48,7 @@ void* enviar(void *arg)
 
             char singleLine[200];
 
-            char multipleLines[200][200];
+            char multipleLines[200][200];//
 
             int counter = 0;
             int tot = 0;
