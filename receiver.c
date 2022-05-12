@@ -56,9 +56,13 @@ int main(int argc, char *argv[])
         if( strncmp(buff, "exit", strlen("exit")) == 0){ //se comparan dos strings, si el string ingresado por el usurio es exit, se sale del ciclo 
             break; //strncmp devuelve cero si sus dos string a comparar son iguales
         }
+        if(strncmp(buff, "Enviar Archivo", strlen("Enviar Archivo"))==0)
+        {
+
+        }
     }
  
-    mq_close(mq);
+    mq_close(mq); //cierra la cola
     mq_unlink("/mq0"); //remueve el queue de mensajes
     exit(EXIT_SUCCESS);
 }

@@ -27,7 +27,7 @@ void* recibir(void *arg)
 int main(int argc, char *argv[])
 {
     mqd_t mq = mq_open("/mq0", O_WRONLY);
-    char str[32];
+    char str[64];
 
     pthread_t threadID2;
     pthread_create(&threadID2,NULL,&recibir,NULL);
