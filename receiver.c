@@ -41,33 +41,33 @@ void* enviar(void *arg)
             }
             fclose(fPointer);
         }
-        else if(strncmp(str, "EnviarMensajeInvertido", strlen("EnviarMensajeInvertido")) == 0)
-        {
-            FILE *fPointer;
-            fPointer = fopen("MiMensaje.txt", "r");
+        // else if(strncmp(str, "EnviarMensajeInvertido", strlen("EnviarMensajeInvertido")) == 0)
+        // {
+        //     FILE *fPointer;
+        //     fPointer = fopen("MiMensaje.txt", "r");
 
-            char singleLine[200];
+        //     char singleLine[200];
 
-            char multipleLines[200][200];//
+        //     char multipleLines[200][200];//
 
-            int counter = 0;
-            int tot = 0;
+        //     int counter = 0;
+        //     int tot = 0;
 
-             while (fgets(multipleLines[counter], 200, fPointer))
-            {
-                multipleLines[counter][strlen(multipleLines[counter])-1]= '\n';
-                counter++;
-            }
+        //      while (fgets(multipleLines[counter], 200, fPointer))
+        //     {
+        //         multipleLines[counter][strlen(multipleLines[counter])-1]= '\n';
+        //         counter++;
+        //     }
 
-            tot = counter;
+        //     tot = counter;
 
-            for (counter = 0; counter < tot; ++counter)
-            {
-                mq_send(mq2, multipleLines[counter], strlen(str) + 1, 0);
-            }
+        //     for (counter = 0; counter < tot; ++counter)
+        //     {
+        //         mq_send(mq2, multipleLines[counter], strlen(str) + 1, 0);
+        //     }
             
 
-        }
+        // }
 
     }
 
