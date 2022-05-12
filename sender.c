@@ -9,11 +9,11 @@ void* recibir(void *arg)
 {
    mqd_t mq2 = mq_open("/mq2",O_RDONLY);
 
-    char buff[64];
+    char buff[200];
 
     while (1)
     {
-        mq_receive(mq2, buff, 64, NULL);
+        mq_receive(mq2, buff, 200, NULL);
         printf("Message received: %s\n", buff);
         if (strncmp(buff, "exit", strlen("exit")) == 0) {
             break;
@@ -27,7 +27,7 @@ void* recibir(void *arg)
 int main(int argc, char *argv[])
 {
     mqd_t mq = mq_open("/mq0", O_WRONLY);
-    char str[64];
+    char str[200];
 
     pthread_t threadID2;
     pthread_create(&threadID2,NULL,&recibir,NULL);
